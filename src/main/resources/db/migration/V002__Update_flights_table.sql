@@ -1,0 +1,1 @@
+ALTER TABLE flights ADD deleted boolean NOT NULL DEFAULT false;

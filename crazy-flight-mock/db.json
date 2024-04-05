@@ -1,0 +1,40 @@
+{
+    "flights": [
+        {
+            "id": "b83ee902-a1e3-4f23-b8f7-cb432097e1e0",
+            "carrier": "Carrier",
+            "basePrice": 100,
+            "tax": 15,
+            "departureAirportName": "OPO",
+            "arrivalAirportName": "AMS",
+            "inboundDate": "2024-12-31",
+            "inboundTime": "12:00:00",
+            "outboundDate": "2024-12-31",
+            "outboundTime": "14:00:00"
+        },
+        {
+            "id": "b83ee902-a1e3-4f23-b8f7-cb432097e1e0",
+            "carrier": "Carrier",
+            "basePrice": 50,
+            "tax": 5,
+            "departureAirportName": "LIS",
+            "arrivalAirportName": "OPO",
+            "inboundDate": "2024-12-31",
+            "inboundTime": "12:00:00",
+            "outboundDate": "2024-12-31",
+            "outboundTime": "13:00:00"
+        },
+        {
+            "id": "e977c66e-cd4a-4905-a0d5-b9c1efb85e13",
+            "carrier": "Carrier",
+            "basePrice": 50,
+            "tax": 5,
+            "departureAirportName": "OPO",
+            "arrivalAirportName": "MAD",
+            "inboundDate": "2024-12-31",
+            "inboundTime": "12:00:00",
+            "outboundDate": "2024-12-31",
+            "outboundTime": "14:00:00"
+        }
+    ]
+}

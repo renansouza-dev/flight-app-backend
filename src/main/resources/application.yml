@@ -1,0 +1,55 @@
+server:
+  servlet:
+    context-path: /api/v1
+
+# JPA and Datasource configuration settings
+spring:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc.time_zone: UTC
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+  datasource:
+    url: jdbc:postgresql://localhost:5432/flight-app-db
+    username: flightuser
+    password: flightpass
+    driver-class-name: org.postgresql.Driver
+
+# External services
+crazy:
+  baseUri: ${CRAZY_FLIGHT_BASEURI:https://api.crazy-supplier.com/flights}
+  client:
+    connectTimeout: 3000
+    readTimeout: 3000
+
+# Actuator
+management:
+  endpoints:
+    web:
+      base-path: /api/mgmt
+      exposure:
+        include: flyway, health, info, metrics, prometheus
+
+# API documentation / Swagger
+springdoc:
+  swagger-ui:
+    display-request-duration: true
+    operationsSorter: method
+    disable-swagger-default-url: true
+  show-actuator: true
+
+# Circuit Breaker
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      registerHealthIndicator: true
+      slidingWindowSize: 10
+      minimumNumberOfCalls: 5
+      permittedNumberOfCallsInHalfOpenState: 3
+      automaticTransitionFromOpenToHalfOpenEnabled: true
+      waitDurationInOpenState: 5s
+      failureRateThreshold: 50
+      eventConsumerBufferSize: 10
