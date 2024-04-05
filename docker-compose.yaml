@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  app:
+    image: renansouza-dev/flight-app-backend
+    container_name: flight-app-backend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - CRAZY_FLIGHT_BASEURI=http://crazy-flight-mock:80
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/flight-app-db
+      - SPRING_DATASOURCE_USERNAME=flightuser
+      - SPRING_DATASOURCE_PASSWORD=flightpass
+
+  db:
+    image: postgres:16-alpine
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: flightuser
+      POSTGRES_PASSWORD: flightpass
+      POSTGRES_DB: flight-app-db
+
+  crazy-flight-mock:
+    image: clue/json-server
+    container_name: crazy-flight-mock
+    ports:
+      - "1080:80"
+    volumes:
+      - ./crazy-flight-mock/db.json:/data/db.json
+
+networks:
+  compose-network:
+    driver: bridge
